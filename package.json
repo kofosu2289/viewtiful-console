@@ -1,0 +1,27 @@
+{
+  "name": "viewtiful-console",
+  "version": "0.1.0",
+  "description": "A console wrapper intended to be extensible. Thoroughly unfinished as of yet.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kofosu2289/viewtiful-console.git"
+  },
+  "keywords": [
+    "console",
+    "logging"
+  ],
+  "author": "Kenneth Ofosu <kennethofosu01@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kofosu2289/viewtiful-console/issues"
+  },
+  "homepage": "https://github.com/kofosu2289/viewtiful-console#readme",
+  "dependencies": {
+    "colors": "1.4.0",
+    "np": "^6.2.4"
+  }
+}
