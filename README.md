@@ -10,7 +10,7 @@ A console alternative that will (eventually):
 
 This:
 
-![example of several JavaScript values being logged along with labels of their variable names]
+![example of several JavaScript values being logged along with labels of their variable names](./consoleexample.png)
 
 
 ### Installation
