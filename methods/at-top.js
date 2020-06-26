@@ -1,8 +1,8 @@
 const colors = require("colors");
 
-const atTop = (str) => {
+const atTop = (...strings) => {
   console.clear();
-  console.log(colors.bgMagenta.cyan.bold(str));
+  strings.forEach(str => console.log(colors.bgMagenta.cyan.bold(str)));
 };
 
 module.exports = atTop;
