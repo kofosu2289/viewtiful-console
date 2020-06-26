@@ -1,7 +1,10 @@
 const colors = require("colors");
+const termSize = require('term-size');
+const wordWrap = require('wordwrap');
+const boxen = require('boxen');
 
 const viewtifulConsole = {
-  label(variables) {
+  withLabel(variables) {
     Object.keys(variables).forEach((variableName) => {
       const value = variables[variableName];
       console.log(colors.magenta(variableName));
@@ -9,6 +12,57 @@ const viewtifulConsole = {
       console.log("");
     });
   },
+
+  atTop(str) {
+    console.clear();
+    console.log(str);
+  },
+
+  asBanner(str) {
+    const rowWidth = termSize().columns;
+    const rows = wordWrap(rowWidth - 10)(str);
+    const strWidth = Math.min(str.length, rowWidth - 10);
+    const horizontalPadding = Math.round((rowWidth - strWidth) / 2) - 5;
+
+    const options = {
+      borderColor: 'magenta',
+      float: 'center',
+      align: 'center',
+      borderStyle: 'double',
+      padding: {
+        top: 1,
+        bottom: 1,
+        left: horizontalPadding,
+        right: horizontalPadding,
+      },
+    };
+
+    console.log(colors.cyan(boxen(rows.toUpperCase(), options)));
+  },
+
+  log(...vals) {
+    vals.forEach((val) => {
+      console.log(`                                  (@@@@@@@@
+                                  (@@    @@@/                                   
+                                  (@@      @@@                                  
+          @@@@@@@@@@@@@@@@@@@@@@@@@@@        @@@@@@@@@@@@@@@@@@@@@@@@@@         
+      *@@@@               @@@@                                        @@@@      
+    @@@@    @@@@@@@@@@@@     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.       @@@@   
+  &@@    @@@@          @@@@,   @@@                                         &@@  
+ @@@   @@@     @@@@@@@    @@@   %@@                                          @@(
+ @@   @@@   @@@      @@@/   @@   @@@@@@@@@@@@@@@@@@@@   *@@@@@@@@@@@@@@@@     @@
+@@@   @@   @@@         @@   @@@   @@                                          @@
+@@@   @@   @@@         @@   @@@  .@@                 @@@@@@@@@@@@             @@
+ @@   @@@   %@@@    @@@@   %@@   @@@  @@@@@@@@@@@@@@@@         .@@@@@@@@@    #@@
+ *@@    @@@    @@@@@@     @@@   @@@                    @@@@@@@@             ,@@ 
+   @@@    @@@@                 @@@                    @@#    @@@           @@@  
+    (@@@     @@@@@@@@@@     .@@@@@@@@@@@@@@@@@@@@                        @@@    
+       @@@@@             @@@@/                                       @@@@@      
+           @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          `);
+      this.withLabel({ [`Well... you did ask for a log!`]: val });
+    });
+  },
 };
+
 
 module.exports = viewtifulConsole;
