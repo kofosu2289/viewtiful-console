@@ -21,10 +21,6 @@
   },
   "homepage": "https://github.com/kofosu2289/viewtiful-console#readme",
   "dependencies": {
-    "boxen": "4.2.0",
-    "colors": "1.4.0",
-    "np": "^6.2.4",
-    "term-size": "2.2.0",
-    "wordwrap": "1.0.0"
+    "colors": "1.4.0"
   }
 }
