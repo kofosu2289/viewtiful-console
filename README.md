@@ -42,11 +42,11 @@ yarn add viewtiful-console
 
 ### label
 
-The only method fully implemented so far, `label` takes in an object and logs the key as the label for the value.
+The only method fully implemented so far, `label` takes in an object and logs the keys as labels for the values.
 
 ![a screenshot of the `label` method in action](./assets/screenshots/label-1.png)
 
-THe objet that `label` takes in can have more than one property, meaning you can log several key/value pairs in one call.
+THe object that `label` takes in can have more than one property, meaning you can log several key/value pairs in one call.
 
 ![a screenshot of the two values in keys of one object passed into `label`](./assets/screenshots/label-2.png)
 
