@@ -2,45 +2,69 @@
 
 A set of easy-to-use `console.log` alternatives for clearer code demonstrations.
 
-# What's Wrong With `console.log`?
 
-Pretty much everything, am i right?
+# What's Wrong With `console.log`?
+### The TLDR, Conversational Intro
+
+_Everything_ is wrong with `console.log`.
+
+But mainly the parsing.
 
 1. It tends to blend in with the terminal's info-dump, making it difficult to find. 
 2. If you care about the other information in the terminal, well, that becomes harder to parse as well.
 3. Once you have even a few of them, you get a new parsing task as well: telling one from the other.
 
-Even though there are many better tools for debugging our code, we still reach for `console.log` way more than we should, and _if_ we're going to do that, let's at least make our logging more functional.
+A common solution to parsing your logging is to make sure each one is labelled in some way, which requires `console.log` usage like the following increasingly effective and verbose examples:
 
-This is moderately easy to do with libraries like [colors](https://www.npmjs.com/package/colors) and [boxen](https://www.npmjs.com/package/boxen), but they're designed (and designed well) to be used as permanent solutions within a CLI app, and therefore are a bit burdensome to set up just to log something quickly and get out.
+```javascript
+console.log('The value of foo is: ', foo);
 
-So that's what Viewtiful-Console is for. Log the results of code in an easily-parsed, expressive way, so that you can get the info you need without losing everything else, delete your log, and get right back to work.
+// Or, slightly easier to parse because it's on two lines:
+console.log('The value of foo is:');
+console.log(foo);
 
-It's also great for showcasing your code results to others!
+// And to make it easier to parse from the other terminal output:
+const colors = require('colors');
+
+console.log(colors.cyan('The value of foo is:'));
+console.log(colors.magenta.bold(foo));
+```
+
+And now, gradually, you're getting to the point where you're looking for a keyboard shortcut or extension or macro to input all this extra _code_ for you.
+
+Since I often try to do a quick-and-dirty look at a certain value, particularly when demonstrating code to others, at a certain point it made sense to make this its own function. And then it made sense to make it a shareable module.
+
+And so: this library.
+
 
 # Viewtiful-Console Design Principles
+### The More Formal Introduction
 
 Viewtiful-Console is a set of `console.log`-style methods specifically designed to produce a clear signal in a noisy console. It achieves this through three basic design principles:
 
-  1. Solve actual problems. e.g., labelling what value you're logging is an annoying task and an unnecessary pain point.
-  2. Use style and formatting in a way that complements the purpose of each use-case. e.g., if you're marking a section of your logs with a header, it should be absolutely unmissable.
+  1. Solve actual problems. For example, labelling what value you're logging is an annoying task and an unnecessary pain point.
+  2. Use style and formatting in a way that complements the purpose of each use-case. For example, if you're marking a section of your logs with a header, it should be absolutely unmissable.
   3. Require no set-up. There is no configuration needed or, for the most part, possible. This is a highly opinionated set of methods for displaying the results of code, and it has been developed so that _you_ don't have to waste your time re-inventing or even tinkering with the logging wheel.
+
 
 # Viewtiful-Console Installation
 
 In the working directory of an `npm`-controlled project:
 
 ```bash
-npm install viewtiful-console
+npm install viewtiful-console --save-dev
 ```
-OR
 
-```bash
-yarn add viewtiful-console
-```
 # Viewtiful-Console Methods
 
-### label
+### withLabel
+
+`withLabel` takes in an object and logs the keys as labels for the values.
+
+You can use this for one-shot logs:
+
+![a screenshot of the `withLabel` method in action](./assets/screenshots/label-1.png)
+
 
 The only method fully implemented so far, `label` takes in an object and logs the keys as labels for the values.
 
